@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="SmokeTest.TestCases">
+      <class name="Regression.TestCases">
         <methods>
-          <include name="TC1"/>
+          <include name="TC04"/>
+          <include name="TC03"/>
         </methods>
-      </class> <!-- SmokeTest.TestCases -->
+      </class> <!-- Regression.TestCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
