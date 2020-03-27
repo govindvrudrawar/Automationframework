@@ -11,14 +11,20 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class KeyWord {
+	/**
+	 * This method opens the browser which the user chooses
+	 * 
+	 */
 
 	public static void openBrowser(String browserName) {
 		switch (browserName) {
@@ -42,10 +48,14 @@ public class KeyWord {
 			Constants.driver = new SafariDriver();
 			System.out.println("Using the Safari Browser");
 			break;
+		case "Html":
+			Constants.driver= new HtmlUnitDriver();
+			System.out.println("Using Headless HtmlUnit Driver");
+
 		default:
 			System.err.println(
-					"Invalid BrowserName Provided. " + "Expected is Chrome, Firefox, InternetExplorer, Safari");
-			System.out.println("You have entered"+browserName);
+					"Invalid BrowserName Provided. " + "Expected is Chrome, Firefox, InternetExplorer, Safari, Html");
+			System.out.println("You have entered incorrectly as " + browserName);
 			break;
 
 		}
@@ -120,14 +130,11 @@ public class KeyWord {
 		getWebElement(locatorType, locatorValue).click();
 	}
 
-	public static String getTabName(String locatorType, String locatorValue) {
+	public static String getElementName(String locatorType, String locatorValue) {
 		String tabName = null;
 		tabName = getWebElement(locatorType, locatorValue).getText();
 		return tabName;
 	}
-
-	
-	
 
 	/**
 	 * This method verifies if the number of main tabs of the opened url is same as

@@ -5,8 +5,10 @@
     <classes>
       <class name="Regression.TestCases">
         <methods>
-          <include name="TC04"/>
           <include name="TC03"/>
+          <include name="TC02"/>
+          <include name="TC01"/>
+          <include name="TC05"/>
         </methods>
       </class> <!-- Regression.TestCases -->
     </classes>
