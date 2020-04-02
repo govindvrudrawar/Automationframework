@@ -8,10 +8,16 @@
 package keyword;
 
 import java.io.FileInputStream;
+import java.util.Iterator;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+
+import ru.yandex.qatools.ashot.AShot;
 
 /**
  * 
@@ -27,5 +33,11 @@ public class Constants {
 	public static Properties prop;
 	public static FileInputStream fis;
 	public static WebElement element;
+	public static AShot ashot;
+	public static ChromeOptions options;
+	public static Iterator<String> itr;
+	public static Logger logger;
+	public static Actions action;
+	
 
 }

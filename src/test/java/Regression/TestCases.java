@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 
+import junit.framework.Assert;
 import keyword.Constants;
 import keyword.KeyWord;
 import keyword.PropertyFile;
@@ -15,28 +16,36 @@ public class TestCases {
 
 	@Test
 	public void TC01() {
+		KeyWord.createLogs("TestCases");
 		KeyWord.openBrowser("Chrome");
+		Constants.logger.info("Browser is launched");
 		KeyWord.openUrl("https://www.amazon.in");
+		Constants.logger.info("url is launched");
 		KeyWord.windowMaximize();
+		Constants.logger.info("window is maximized");
 		KeyWord.closeWindow();
+		Constants.logger.info("window is closed");
 
 	}
 
 	@Test
 	public void TC02() throws InterruptedException {
 		// This test will check if given tab on the webpage is clickable
-		KeyWord.openBrowser("FireFox");
+		KeyWord.openBrowser("Chrome");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.windowMaximize();
 		Thread.sleep(3000);
-		KeyWord.ClickingtheElement(PropertyFile.getLocator("TodayDeals")[0], PropertyFile.getLocator("TodayDeals")[1]);
+		KeyWord.clickingOnElement(PropertyFile.getLocator("BestSellers")[0], PropertyFile.getLocator("BestSellers")[1]);
+		String Actual = Constants.driver.getCurrentUrl();
+		String Expected = "https://www.amazon.in/gp/bestsellers/?ref_=nav_cs_bestsellers";
 		KeyWord.closeAllWindows();
+		Assert.assertEquals(Expected, Actual);
 	}
 
 	@Test
 	public void TC03() throws InterruptedException {
 		// To test if the url opens in all browser
-		KeyWord.openBrowser("Chrome");
+		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.windowMaximize();
 		KeyWord.closeWindow();
@@ -88,7 +97,7 @@ public class TestCases {
 	public void TC05() throws InterruptedException {
 		// This test case will check the TAB sequence of the main tabs/elements
 
-		KeyWord.openBrowser("Chrome");
+		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.windowMaximize();
 		Thread.sleep(3000);
@@ -133,7 +142,7 @@ public class TestCases {
 		// This test case will check if the item searched in the TextBox is searched
 		// correctly and displays correct result and if the
 		// item is not there does it displays appropriate message
-		KeyWord.openBrowser("Chrome");
+		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.windowMaximize();
 		Thread.sleep(1000);
@@ -173,7 +182,7 @@ public class TestCases {
 		// choosing payment method
 		// i.e. COD(cash on delivery, debit/credit card, internet banking, UPI and
 		// installments)
-		KeyWord.openBrowser("Chrome");
+		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in/gp/buy/payselect/handlers/display.html?hasWorkingJavascript=1");
 		KeyWord.windowMaximize();
 		Thread.sleep(3000);
@@ -194,7 +203,7 @@ public class TestCases {
 		// This test case is to check if the same product search in two different
 		// portals gives comparable results i.e. Amazon and Flipkart in this case.
 		// and display the result.
-		KeyWord.openBrowser("Chrome");
+		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.windowMaximize();
 		KeyWord.enterText(PropertyFile.getLocator("AmazonTextBox")[0], PropertyFile.getLocator("AmazonTextBox")[1],
@@ -202,7 +211,7 @@ public class TestCases {
 		System.out.println(KeyWord.getElementName(PropertyFile.getLocator("Colgate ZigZag")[0],
 				PropertyFile.getLocator("Colgate ZigZag")[1]));
 		Thread.sleep(3000);
-		KeyWord.openBrowser("Chrome");
+		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.flipkart.com");
 		KeyWord.windowMaximize();
 		KeyWord.enterText(PropertyFile.getLocator("FlipkartTextBox")[0], PropertyFile.getLocator("FlipkartTextBox")[1],
@@ -215,10 +224,15 @@ public class TestCases {
 	}
 
 	public static void TC11() {
+		//This method will take screenshot by using AShot library
+		KeyWord.openBrowser("FireFox");
+		KeyWord.openUrl("https://www.amazon.in");
+		KeyWord.takeScreenShot_usingAShot();
+	
 
+	public static void TC12() {This 
+		//
 	}
-
-	public static void TC12() {
 
 	}
 
