@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -139,6 +140,37 @@ public class KeyWord {
 		}
 		return element;
 	}
+	public static List<WebElement> getWebElements(String locatorType, String locatorValue) {
+		List<WebElement> elements = null;
+		switch (locatorType) {
+		case ("LINK_TEXT"):
+			elements = Constants.driver.findElements(By.linkText(locatorValue));
+			break;
+		case ("ID"):
+			elements = Constants.driver.findElements(By.id(locatorValue));
+			break;
+		case ("CLASS_NAME"):
+			elements = Constants.driver.findElements(By.className(locatorValue));
+			break;
+		case ("PARTIAL_LINK_TEXT"):
+			elements = Constants.driver.findElements(By.partialLinkText(locatorValue));
+			break;
+		case ("XPATH"):
+			elements = Constants.driver.findElements(By.xpath(locatorValue));
+			break;
+		case ("CSS"):
+			elements = Constants.driver.findElements(By.cssSelector(locatorValue));
+			break;
+		case ("TAGNAME"):
+			elements = Constants.driver.findElements(By.tagName(locatorValue));
+		default:
+			System.err.println("Please enter valid locator "
+					+ "Expected:CSS, XPATH, CLASSNAME, PARTIAL_LINK_TEXT, LINK_TEXT, ID, TAGNAME");
+			System.err.println("You have entered incorrectly as " + locatorType);
+
+		}
+		return elements;
+	}
 
 	public static void enterText(String locatorType, String locatorValue, String textToEnter) {
 		getWebElement(locatorType, locatorValue).sendKeys(textToEnter);
@@ -204,6 +236,9 @@ public class KeyWord {
 		Logger logger = Logger.getLogger(classname);
 		PropertyConfigurator.configure(filepath);
 
+	}
+	public static void navigateTo(String url) {
+		Constants.driver.navigate().to(url);
 	}
 
 	public static void takeScreenShot_usingAShot() {

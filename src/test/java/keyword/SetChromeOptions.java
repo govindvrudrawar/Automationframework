@@ -11,9 +11,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class SetChromeOptions {
 	public static void main(String[] args) {
 
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\sony\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		// WebDriverManager.chromedriver().setup();
+		//System.setProperty("webdriver.chrome.driver",
+		//"C:\\Users\\sony\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver = new ChromeDriver();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("test-type");
@@ -26,6 +26,8 @@ public class SetChromeOptions {
 		options.addArguments("test-type=browser");
 		options.addArguments("disable-infobars");
 		options.addArguments("disable-extensions");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-setuid-sandbox");
 
 		options.addExtensions(new File("/path/to/extension.crx"));
 		Constants.driver = new ChromeDriver(options);

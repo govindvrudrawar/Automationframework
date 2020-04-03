@@ -2,9 +2,13 @@ package Regression;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import junit.framework.Assert;
@@ -77,19 +81,24 @@ public class TestCases {
 		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.windowMaximize();
-		Thread.sleep(3000);
-		System.out.println(KeyWord.getElementName(PropertyFile.getLocator("AmazonPay")[0],
-				PropertyFile.getLocator("AmazonPay")[1]));
-		System.out.println(KeyWord.getElementName(PropertyFile.getLocator("TodayDeals")[0],
-				PropertyFile.getLocator("TodayDeals")[1]));
-		System.out.println(KeyWord.getElementName(PropertyFile.getLocator("NewReleases")[0],
-				PropertyFile.getLocator("NewReleases")[1]));
-		System.out.println(
-				KeyWord.getElementName(PropertyFile.getLocator("Mobiles")[0], PropertyFile.getLocator("Mobiles")[1]));
-		System.out.println(
-				KeyWord.getElementName(PropertyFile.getLocator("Pantry")[0], PropertyFile.getLocator("Pantry")[1]));
-		System.out.println(KeyWord.getElementName(PropertyFile.getLocator("BestSellers")[0],
-				PropertyFile.getLocator("BestSellers")[1]));
+
+		String tabName1 = KeyWord.getElementName(PropertyFile.getLocator("AmazonPay")[0],
+				PropertyFile.getLocator("AmazonPay")[1]);
+		String tabName2 = KeyWord.getElementName(PropertyFile.getLocator("TodayDeals")[0],
+				PropertyFile.getLocator("TodayDeals")[1]);
+		String tabName3 = KeyWord.getElementName(PropertyFile.getLocator("NewReleases")[0],
+				PropertyFile.getLocator("NewReleases")[1]);
+		String tabName4 = KeyWord.getElementName(PropertyFile.getLocator("Mobiles")[0],
+				PropertyFile.getLocator("Mobiles")[1]);
+		String tabName5 = KeyWord.getElementName(PropertyFile.getLocator("Pantry")[0],
+				PropertyFile.getLocator("Pantry")[1]);
+		String tabName6 = KeyWord.getElementName(PropertyFile.getLocator("BestSellers")[0],
+				PropertyFile.getLocator("BestSellers")[1]);
+		String[] actualtabNames = { tabName1, tabName2, tabName3, tabName4, tabName5, tabName6 };
+		String[] expectedtabNames = { "Amazon Pay", "Today's Deals", "New Releases", "Mobiles", "Best Sellers",
+				"Pantry" };
+		boolean b = Arrays.equals(actualtabNames, expectedtabNames);
+		assert (b) : "test case is passed failed";
 		KeyWord.closeAllWindows();
 	}
 
@@ -224,23 +233,53 @@ public class TestCases {
 	}
 
 	public static void TC11() {
-		//This method will take screenshot by using AShot library
+		// This method will take screenshot by using AShot library
 		KeyWord.openBrowser("FireFox");
 		KeyWord.openUrl("https://www.amazon.in");
 		KeyWord.takeScreenShot_usingAShot();
-	
 
-	public static void TC12() {This 
-		//
 	}
 
+	@Test
+	public static void TC12() {
+		// This method will see if the tabs on the chosen webapp navigates back and
+		// forth between them
+		KeyWord.openBrowser("Chrome");
+		KeyWord.openUrl("https://www.amazon.in");
+		KeyWord.clickingOnElement(PropertyFile.getLocator("NewReleases")[0], PropertyFile.getLocator("NewReleases")[1]);
+		KeyWord.navigateTo(PropertyFile.getProperty("Homepage"));
+		KeyWord.clickingOnElement(PropertyFile.getLocator("BestSellers")[0], PropertyFile.getLocator("BestSellers")[1]);
+		KeyWord.clickingOnElement(PropertyFile.getLocator("BestSellers_books")[0],
+				PropertyFile.getLocator("BestSellers_books")[1]);
+		Constants.driver.navigate().back();
+		Constants.driver.navigate().back();
+		String currenturl = Constants.driver.getCurrentUrl();
+		String expectedurl = PropertyFile.getProperty("Homepage");
+		Assert.assertEquals(currenturl, expectedurl);
 	}
 
 	public static void TC13() {
-
+		//To verify if the items on the main TextBox search dropdown is displaying the required options
+		KeyWord.openBrowser("Chrome");
+		KeyWord.openUrl("https://www.amazon.in");
+		List<WebElement> textBoxDropDown=KeyWord.getWebElements(PropertyFile.getLocator("TextBoxDropDown")[0], PropertyFile.getLocator("TextBoxDropDown")[1]);
+		Constants.iterator = textBoxDropDown.listIterator();
+		while (Constants.iterator.hasNext()) {
+			String dropdowns=(String)Constants.iterator.next().getText();
+			System.out.println(dropdowns);
+			}
+		KeyWord.read_ExcelFile_using_Apache_POI("C:\\Users\\sony\\Desktop\\AmazonTextDropDown.xlsx");
+		String[][] ExpectedDropDown = new String[1][43];
+		for (int i = 0; i < obj.length; i++) {
+			for (int j = 0; j < obj[i].length; j++) {
+				System.out.print(obj[i][j] + " ");
+			}
+			System.out.println("");
+		}	
+		Collections.sort(List<WebElement>textBoxDropDown);
 	}
 
-	public static void TC14() {
+	public staticvoid TC14() {
 
 	}
 

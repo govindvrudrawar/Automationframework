@@ -12,6 +12,9 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -36,8 +39,12 @@ public class Constants {
 	public static AShot ashot;
 	public static ChromeOptions options;
 	public static Iterator<String> itr;
+	public static Iterator<WebElement> iterator;
 	public static Logger logger;
 	public static Actions action;
+	public static XSSFWorkbook workbook;
+	public static XSSFSheet sheet;
+	public static Cell cell;
 	
 
 }
